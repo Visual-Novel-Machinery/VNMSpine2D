@@ -22,15 +22,8 @@ void UBaseSpine2DCharacterDisplayWidget::SetCharacterImageByCharacterIdAndEmotio
 		UE_LOG(LogVNMSpine2D, Error, TEXT("UBaseSpine2DCharacterDisplayWidget::SetCharacterImageByCharacterIdAndEmotionId: Character Definition for Character Id not found!"));
 		return;
 	}
-	FImageDefinition CharacterTexture;
-	if (!CharacterDefinition.CharacterImagePerEmotion.Contains(EmotionId))
-	{
-		UE_LOG(LogVNMSpine2D, Error, TEXT("UBaseSpine2DCharacterDisplayWidget::SetCharacterImageByCharacterIdAndEmotionId: Texture for Emotion Id not found!"));
-	}
-	else
-	{
-		CharacterTexture = CharacterDefinition.CharacterImagePerEmotion[EmotionId];
-	}
+
+	
 	
 	Super::SetCharacterImageByCharacterIdAndEmotionId(InCharacterId, InEmotionId);
 }

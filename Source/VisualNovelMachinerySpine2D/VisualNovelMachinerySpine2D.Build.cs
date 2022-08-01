@@ -27,7 +27,9 @@ public class VisualNovelMachinerySpine2D : ModuleRules
 			{
 				"Core", 
 				"VNM",
-				"UMG"
+				"UMG", 
+				"SpinePlugin",
+				"DeveloperSettings"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
