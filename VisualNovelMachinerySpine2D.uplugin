@@ -18,11 +18,6 @@
       "Name": "VNMSpine2D",
       "Type": "Runtime",
       "LoadingPhase": "Default"
-    },
-    {
-      "Name": "VNMSpine2DEditor",
-      "Type": "Editor",
-      "LoadingPhase": "Default"
     }
   ],
   "Plugins": [

@@ -12,11 +12,8 @@ void UBaseSpine2DCharacterDisplayWidget::SetCharacterImageByCharacterIdAndEmotio
 	{
 		return;
 	}
-    
-	CharacterId = InCharacterId;
-	EmotionId = InEmotionId;
 
-	CharacterDefinition = UVNMSettings::GetVNMSettings()->GetCharacterDefinitionById(CharacterId);
+	CharacterDefinition = UVNMSettings::GetVNMSettings()->GetCharacterDefinitionById(InCharacterId);
 
 	if (!CharacterDefinition.IsValid())
 	{
@@ -24,13 +21,13 @@ void UBaseSpine2DCharacterDisplayWidget::SetCharacterImageByCharacterIdAndEmotio
 		return;
 	}
 
-	if (!CharacterDefinition.CharacterImagePerEmotion.Contains(EmotionId))
+	if (!CharacterDefinition.CharacterImagePerEmotion.Contains(InEmotionId))
 	{
 		UE_LOG(LogVNMSpine2D, Error, TEXT("UBaseSpine2DCharacterDisplayWidget::SetCharacterImageByCharacterIdAndEmotionId: Character doesn't have an Emotion!"));
 		return;
 	}
 
-	FVNMSpine2DCharacterDefinition SpineCharacterDefinition = UVNMSpine2DSettings::GetVNMSpine2DSettings()->GetSpine2DCharacterById(CharacterId);
+	FVNMSpine2DCharacterDefinition SpineCharacterDefinition = UVNMSpine2DSettings::GetVNMSpine2DSettings()->GetSpine2DCharacterById(InCharacterId);
 
 	if (!SpineCharacterDefinition.IsValid())
 	{
@@ -39,14 +36,25 @@ void UBaseSpine2DCharacterDisplayWidget::SetCharacterImageByCharacterIdAndEmotio
 		Super::SetCharacterImageByCharacterIdAndEmotionId(InCharacterId, InEmotionId);
 		return;
 	}
+    
+	CharacterId = InCharacterId;
+	EmotionId = InEmotionId;
 
 	SpineCharacterImage->SetVisibility(ESlateVisibility::HitTestInvisible);
 	CharacterImage->SetVisibility(ESlateVisibility::Collapsed);
-	SpineCharacterImage->Atlas = SpineCharacterDefinition.Atlas;
-	SpineCharacterImage->SkeletonData = SpineCharacterDefinition.SkeletonData;
-	SpineCharacterImage->SetSkin(EmotionId.ToString());
+	CharacterImage->SetRenderOpacity(0.f);
+	SpineCharacterImage->Atlas = SpineCharacterDefinition.Atlas.LoadSynchronous();
+	SpineCharacterImage->SkeletonData = SpineCharacterDefinition.SkeletonData.LoadSynchronous();
+	SpineCharacterImage->SetAnimation(0, EmotionId.ToString().ToLower(), true);
 	
 	CharacterLayers.Empty();
 
 	CharacterImage->InitializeImageLayers(0, FSlateBrush(), FLinearColor::Transparent);
+}
+
+void UBaseSpine2DCharacterDisplayWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
+{
+	Super::NativeTick(MyGeometry, InDeltaTime);
+
+	SpineCharacterImage->Tick(InDeltaTime, false);
 }

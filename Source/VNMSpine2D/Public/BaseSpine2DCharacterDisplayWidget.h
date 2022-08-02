@@ -20,6 +20,8 @@ public:
 
 protected:
 
+	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
+
 	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
 	USpineWidget* SpineCharacterImage;
 };

@@ -16,10 +16,10 @@ struct FVNMSpine2DCharacterDefinition : public FTableRowBase
 	FName CharacterId;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Character)
-	USpineAtlasAsset* Atlas;
+	TSoftObjectPtr<USpineAtlasAsset> Atlas;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Character)
-	USpineSkeletonDataAsset* SkeletonData;
+	TSoftObjectPtr<USpineSkeletonDataAsset> SkeletonData;
 
 	bool IsValid() const
 	{
