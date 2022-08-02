@@ -3,7 +3,7 @@
 
 #include "BaseSpine2DCharacterDisplayWidget.h"
 
-#include "VisualNovelMachinerySpine2D.h"
+#include "VNMSpine2D.h"
 #include "VNMSpine2DSettings.h"
 
 void UBaseSpine2DCharacterDisplayWidget::SetCharacterImageByCharacterIdAndEmotionId(const FName& InCharacterId, const FName& InEmotionId)
