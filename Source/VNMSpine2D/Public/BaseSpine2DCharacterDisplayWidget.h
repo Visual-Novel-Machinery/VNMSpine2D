@@ -11,7 +11,7 @@
  * 
  */
 UCLASS()
-class VISUALNOVELMACHINERYSPINE2D_API UBaseSpine2DCharacterDisplayWidget : public UBaseCharacterDisplayWidget
+class VNMSPINE2D_API UBaseSpine2DCharacterDisplayWidget : public UBaseCharacterDisplayWidget
 {
 	GENERATED_BODY()
 

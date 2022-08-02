@@ -12,15 +12,21 @@ struct FVNMSpine2DCharacterDefinition : public FTableRowBase
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Spine)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Character)
 	FName CharacterId;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Spine)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Character)
 	USpineAtlasAsset* Atlas;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Spine)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Character)
 	USpineSkeletonDataAsset* SkeletonData;
+
+	bool IsValid() const
+	{
+		return !CharacterId.IsNone();
+	}
 };
+
 USTRUCT(BlueprintType)
 struct FVisualNovelMachinerySpine2DSettings
 {
@@ -35,13 +41,17 @@ public:
 * Implements the settings for the Visual Novel Machinery Spine 2D plugin.
 */
 UCLASS(config = Engine, defaultconfig)
-class VISUALNOVELMACHINERYSPINE2D_API UVNMSpine2DSettings : public UDeveloperSettings
+class VNMSPINE2D_API UVNMSpine2DSettings : public UDeveloperSettings
 {
 	GENERATED_BODY()
 	
 public:	
 	UFUNCTION(BlueprintPure, Category=Settings)
 	static UVNMSpine2DSettings* GetVNMSpine2DSettings() { return GetMutableDefault<UVNMSpine2DSettings>(); }
+
+	
+	UFUNCTION(BlueprintPure, Category=Settings)
+	FVNMSpine2DCharacterDefinition GetSpine2DCharacterById(const FName& CharacterId) const;
 
 	/** Gets the settings container name for the settings, either Project or Editor */
 	virtual FName GetContainerName() const override { return TEXT("Project"); }

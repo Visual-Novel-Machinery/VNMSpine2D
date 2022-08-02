@@ -7,7 +7,7 @@
 
 DECLARE_LOG_CATEGORY_EXTERN(LogVNMSpine2D, Log, All);
 
-class FVisualNovelMachinerySpine2DModule : public IModuleInterface
+class FVNMSpine2DModule : public IModuleInterface
 {
 public:
 

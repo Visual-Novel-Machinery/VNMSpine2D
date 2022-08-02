@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class VisualNovelMachinerySpine2D : ModuleRules
+public class VNMSpine2D : ModuleRules
 {
-	public VisualNovelMachinerySpine2D(ReadOnlyTargetRules Target) : base(Target)
+	public VNMSpine2D(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		
@@ -29,7 +29,8 @@ public class VisualNovelMachinerySpine2D : ModuleRules
 				"VNM",
 				"UMG", 
 				"SpinePlugin",
-				"DeveloperSettings"
+				"DeveloperSettings",
+				"AdvancedLayeredImage"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
