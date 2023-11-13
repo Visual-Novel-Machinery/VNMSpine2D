@@ -73,8 +73,7 @@ void UBaseSpine2DCharacterDisplayWidget::SetCharacterImageByCharacterIdAndEmotio
 	SpineCharacterImage->Atlas = SpineCharacterDefinition.Atlas.LoadSynchronous();
 	SpineCharacterImage->SkeletonData = SpineCharacterDefinition.SkeletonData.LoadSynchronous();
 	SpineCharacterImage->SetAnimation(0, EmotionId.ToString().ToLower(), true);
-	SpineCharacterImage->SetScaleX(SpineCharacterDefinition.Scale.X);
-	SpineCharacterImage->SetScaleY(SpineCharacterDefinition.Scale.Y);
+	SpineCharacterImage->SetRenderScale(SpineCharacterDefinition.Scale);
 	
 	CharacterLayers.Empty();
 
