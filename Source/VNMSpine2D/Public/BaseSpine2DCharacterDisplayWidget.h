@@ -17,6 +17,8 @@ class VNMSPINE2D_API UBaseSpine2DCharacterDisplayWidget : public UBaseCharacterD
 
 public:
 	virtual void SetCharacterImageByCharacterIdAndEmotionId(const FName& InCharacterId, const FName& InEmotionId) override;
+	virtual void SetCharacterPosition(ECharacterPositioning InCharacterPositioning, const bool bMoveWithAnimation, int32 UUID) override;
+	virtual void TickCharacterMove(const float Alpha, const float StartPosition, const float TargetPosition) override;
 
 protected:
 

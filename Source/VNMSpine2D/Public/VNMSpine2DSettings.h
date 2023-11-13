@@ -21,6 +21,10 @@ struct FVNMSpine2DCharacterDefinition : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Character)
 	TSoftObjectPtr<USpineSkeletonDataAsset> SkeletonData;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Character)
+	FVector2D Scale = FVector2D(1.0, 1.0);
+	
+
 	bool IsValid() const
 	{
 		return !CharacterId.IsNone();
